@@ -20,7 +20,7 @@ public class SpringDataJpaDemoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		logger.info("All user -> {}", dao.findAll());
-		logger.info("All user 1001 -> {}", dao.findById(1001));
+		//logger.info("All user -> {}", dao.findAll());
+		logger.info("All user 10671 -> {}", dao.findById(10671));
 	}
 }
