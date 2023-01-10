@@ -23,5 +23,6 @@ public class SpringDataJpaDemoApplication implements CommandLineRunner {
 		logger.info("All user -> {}", dao.findAll());
 		logger.info("All user 10671 -> {}", dao.findById(10671));
 		logger.info("Delete user 1001 -> {}", dao.deleteById(1001));
+
 	}
 }
