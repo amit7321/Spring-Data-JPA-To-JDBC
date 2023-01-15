@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Properties;
 
@@ -35,6 +36,24 @@ public class PersonJdbcDao {
 
     public int deleteById(int id) {
         return jdbcTemplate.update("delete from person where id=?", new Object[] {id});
+    }
+
+    public int insert(Person person) {
+        return jdbcTemplate.update("insert into person (id, name, location, birth_date) values(?, ?, ?, ?)",
+                new Object[] {person.getId(),
+                        person.getName(),
+                        person.getLocation(),
+                        new Timestamp(person.getBirthdate().getTime())});
+
+    }
+
+    public int update(Person person) {
+        return jdbcTemplate.update("update person set name = ?, location = ?, birth_date = ? where id = ?",
+                new Object[] { person.getName(),
+                        person.getLocation(),
+                        new Timestamp(person.getBirthdate().getTime()),
+                        person.getId()});
+
     }
 
 
