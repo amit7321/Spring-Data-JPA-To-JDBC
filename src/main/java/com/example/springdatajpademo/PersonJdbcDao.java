@@ -10,10 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Properties;
@@ -23,9 +26,22 @@ public class PersonJdbcDao {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
+
+    class PersonRowMapper implements RowMapper<Person>{
+
+        @Override
+        public Person mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Person person = new Person();
+            person.setId(rs.getInt("id"));
+            person.setName(rs.getString("name"));
+            person.setLocation(rs.getString("location"));
+            person.setBirthdate(rs.getTimestamp("birth_date"));
+            return person;
+        }
+    }
     public List<Person> findAll() {
         return
-                jdbcTemplate.query("select * from person", new BeanPropertyRowMapper(Person.class));
+                jdbcTemplate.query("select * from person", new PersonRowMapper());
     }
 
     public Person findById(int id) {
@@ -53,9 +69,7 @@ public class PersonJdbcDao {
                         person.getLocation(),
                         new Timestamp(person.getBirthdate().getTime()),
                         person.getId()});
-
     }
-
 
 }
 
