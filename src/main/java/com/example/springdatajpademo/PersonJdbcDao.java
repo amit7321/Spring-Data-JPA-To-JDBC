@@ -1,25 +1,16 @@
 package com.example.springdatajpademo;
 
-import jakarta.persistence.*;
-import jakarta.persistence.spi.ClassTransformer;
-import jakarta.persistence.spi.PersistenceProvider;
-import jakarta.persistence.spi.PersistenceUnitInfo;
-import jakarta.persistence.spi.PersistenceUnitTransactionType;
-import org.hibernate.jpa.HibernatePersistenceProvider;
+import com.example.springdatajpademo.entity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
-import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Properties;
 
 @Repository
 public class PersonJdbcDao {

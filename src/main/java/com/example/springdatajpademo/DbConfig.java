@@ -10,10 +10,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 
-@Configuration
+//@Configuration
 public class DbConfig {
 
-    @Bean
+    //@Bean
     public DataSource dataSource() {
         return DataSourceBuilder.create()
                 .url("jdbc:postgresql://localhost:5432/test")
@@ -22,25 +22,7 @@ public class DbConfig {
                 .build();
     }
 
-//    @Bean
-//    public DataSource dataSource2() {
-//        return DataSourceBuilder.create()
-//                .url("jdbc:postgresql://localhost:5432/test")
-//                .username("SA")
-//                .password("12345")
-//                .build();
-//    }
-//
-//    @Bean("pgsqlJDBC")
-//    JdbcTemplate jdbcTemplate() {
-//        return new JdbcTemplate(dataSource());
-//    }
-//
-//    @Bean("msqlJDBC")
-//    @Primary
-//    JdbcTemplate jdbcTemplate2() {
-//        return new JdbcTemplate(dataSource2());
-//    }
+
 
 
 }
