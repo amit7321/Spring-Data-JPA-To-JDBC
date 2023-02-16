@@ -37,13 +37,17 @@ public class SpringDataJpaDemoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		//logger.info("All user -> {}", repo.findAll());
-		//logger.info("All user 10671 -> {}", repository.findById(10671));
+		//logger.info("All user -> {}", .findAll());
+		logger.info("All user 10671 -> {}", repository.findById(10671));
+		logger.info("Inserting user 1071 -> {}", repository.insert(new Person(1071,"Tara", "Dhaka", new Date())));
+		logger.info("Inserting user 1061 -> {}", repository.insert(new Person(1061,"Salam", "Chittagong", new Date())));
+		logger.info("Update user 1071 -> {}", repository.update(new Person("Tara", "rangpur", new Date())));
+		repository.deleteById(404);
 		//logger.info("Delete user 1001 -> {}", dao.deleteById(1001));
 
-		entityManager.getTransaction().begin();
+		/*entityManager.getTransaction().begin();
 		Person p = new Person("Rahim", "Dhaka", new Date());
 		entityManager.persist(p);
-		entityManager.getTransaction().commit();
+		entityManager.getTransaction().commit();*/
 	}
 }
